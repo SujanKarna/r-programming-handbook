@@ -1,0 +1,962 @@
+---
+title: "05-lists"
+format: html
+---
+
+# Introduction
+
+A **list** is a flexible R data structure that can contain multiple objects,
+including objects of different types.
+
+Unlike a vector, which normally contains values of the same basic type, a
+list can contain:
+
+- Numbers
+- Character strings
+- Logical values
+- Vectors
+- Matrices
+- Other lists
+- Data frames
+- Functions
+- Other R objects
+
+For example:
+
+```{r}
+person <- list(
+  name = "Sujan",
+  age = 25,
+  student = TRUE
+)
+
+person
+```
+
+This list contains a character value, a numeric value, and a logical value.
+
+> **Key idea:** A vector is usually homogeneous, while a list can contain
+> heterogeneous objects.
+
+# Creating a List
+
+Use the `list()` function.
+
+```{r}
+my_list <- list(
+  10,
+  "Hello",
+  TRUE
+)
+
+my_list
+```
+
+The three elements have different types.
+
+Check the type:
+
+```{r}
+typeof(my_list)
+```
+
+The result is:
+
+```text
+list
+```
+
+# Named Lists
+
+It is usually more useful to give list elements names.
+
+```{r}
+person <- list(
+  name = "Sujan",
+  age = 25,
+  student = TRUE
+)
+
+person
+```
+
+The names can be retrieved using:
+
+```{r}
+names(person)
+```
+
+# Accessing List Elements
+
+There are three important ways to work with list elements:
+
+```text
+$
+[ ]
+[[ ]]
+```
+
+Understanding the difference between them is essential.
+
+# Using `[[ ]]`
+
+`[[ ]]` extracts the **actual element** from a list.
+
+```{r}
+person <- list(
+  name = "Sujan",
+  age = 25,
+  student = TRUE
+)
+
+person[[1]]
+```
+
+Access by name:
+
+```{r}
+person[["name"]]
+```
+
+Access age:
+
+```{r}
+person[["age"]]
+```
+
+The returned object is the actual value.
+
+For example:
+
+```{r}
+typeof(person[["age"]])
+```
+
+# Using `$`
+
+The `$` operator is commonly used with named lists.
+
+```{r}
+person$name
+person$age
+person$student
+```
+
+This is equivalent to:
+
+```{r}
+person[["name"]]
+person[["age"]]
+person[["student"]]
+```
+
+For named elements, these are usually interchangeable:
+
+```r
+person$name
+person[["name"]]
+```
+
+> **Tip:** `$` is convenient and readable, while `[[ ]]` is more flexible
+> when the element name is stored in another variable.
+
+# Using `[ ]`
+
+Single brackets select a **sublist**.
+
+```{r}
+person[1]
+```
+
+Compare:
+
+```{r}
+person[1]
+person[[1]]
+```
+
+The first returns a list containing the first element.
+
+The second returns the actual value.
+
+This distinction is extremely important.
+
+## Example
+
+```{r}
+person[1]
+```
+
+returns a list.
+
+```{r}
+person[[1]]
+```
+
+returns:
+
+```text
+"Sujan"
+```
+
+# `[ ]` vs `[[ ]]` vs `$`
+
+Consider:
+
+```{r}
+person <- list(
+  name = "Sujan",
+  age = 25
+)
+```
+
+| Syntax | Result |
+|---|---|
+| `person[1]` | A list containing the first element |
+| `person[[1]]` | The first element |
+| `person["name"]` | A list containing `name` |
+| `person[["name"]]` | The value of `name` |
+| `person$name` | The value of `name` |
+
+A useful way to remember it:
+
+```text
+[ ]       → subset of a list
+[[ ]]     → extract an element
+$         → extract a named element
+```
+
+# Lists Can Contain Vectors
+
+A list can contain vectors.
+
+```{r}
+student <- list(
+  name = "Sujan",
+  scores = c(80, 90, 85)
+)
+
+student
+```
+
+Access the vector:
+
+```{r}
+student$scores
+```
+
+Then access an individual score:
+
+```{r}
+student$scores[1]
+```
+
+This combines two indexing operations:
+
+```text
+student
+   ↓
+$scores
+   ↓
+[1]
+```
+
+# Lists Can Contain Matrices
+
+A list can contain a matrix.
+
+```{r}
+data <- list(
+  name = "Scores",
+  matrix = matrix(
+    1:6,
+    nrow = 2,
+    byrow = TRUE
+  )
+)
+
+data
+```
+
+Access the matrix:
+
+```{r}
+data$matrix
+```
+
+Access an element of the matrix:
+
+```{r}
+data$matrix[1, 2]
+```
+
+# Lists Can Contain Data Frames
+
+Lists can also contain data frames.
+
+```{r}
+student_data <- data.frame(
+  name = c("Alice", "Bob"),
+  score = c(85, 90)
+)
+
+student <- list(
+  name = "Student Information",
+  data = student_data
+)
+
+student$data
+```
+
+# Nested Lists
+
+Lists can contain other lists.
+
+```{r}
+person <- list(
+  name = "Sujan",
+  contact = list(
+    email = "example@email.com",
+    phone = "123456789"
+  )
+)
+
+person
+```
+
+Access the nested list:
+
+```{r}
+person$contact
+```
+
+Access the email:
+
+```{r}
+person$contact$email
+```
+
+Or:
+
+```{r}
+person[["contact"]][["email"]]
+```
+
+Nested structures are common in real R objects.
+
+# Length of a List
+
+Use `length()`:
+
+```{r}
+person <- list(
+  name = "Sujan",
+  age = 25,
+  student = TRUE
+)
+
+length(person)
+```
+
+This returns the number of top-level elements.
+
+# Structure of a List
+
+Use `str()` to inspect the structure.
+
+```{r}
+str(person)
+```
+
+`str()` is one of the most useful functions when working with complex R
+objects.
+
+For example:
+
+```{r}
+student <- list(
+  name = "Sujan",
+  age = 25,
+  scores = c(80, 90, 85),
+  passed = TRUE
+)
+
+str(student)
+```
+
+It shows the names, types, and structure of the elements.
+
+> **Tip:** When you receive an unfamiliar R object, try `str(object)` first.
+
+# Modifying List Elements
+
+You can modify an existing element.
+
+```{r}
+person <- list(
+  name = "Sujan",
+  age = 25
+)
+
+person$age <- 26
+
+person
+```
+
+Modify using `[[ ]]`:
+
+```{r}
+person[["age"]] <- 27
+
+person
+```
+
+# Adding New Elements
+
+You can add an element using `$`.
+
+```{r}
+person$country <- "Germany"
+
+person
+```
+
+Or:
+
+```{r}
+person[["university"]] <- "TU Chemnitz"
+
+person
+```
+
+# Removing Elements
+
+Assign `NULL` to remove a named list element.
+
+```{r}
+person <- list(
+  name = "Sujan",
+  age = 25,
+  country = "Germany"
+)
+
+person$country <- NULL
+
+person
+```
+
+Check the result:
+
+```{r}
+names(person)
+```
+
+# Combining Lists
+
+Use `c()` to combine lists.
+
+```{r}
+list1 <- list(
+  name = "Alice",
+  age = 23
+)
+
+list2 <- list(
+  city = "Chemnitz",
+  student = TRUE
+)
+
+combined <- c(list1, list2)
+
+combined
+```
+
+# Repeating Lists
+
+Use `rep()` to repeat list elements.
+
+```{r}
+x <- list(
+  name = "Sujan",
+  age = 25
+)
+
+rep(x, times = 2)
+```
+
+# Converting a List to a Vector
+
+If all elements are compatible, a list can sometimes be simplified into a
+vector.
+
+```{r}
+x <- list(10, 20, 30)
+
+unlist(x)
+```
+
+Result:
+
+```text
+10 20 30
+```
+
+For a character list:
+
+```{r}
+x <- list(
+  "Alice",
+  "Bob",
+  "Charlie"
+)
+
+unlist(x)
+```
+
+> **Important:** `unlist()` removes the list structure and attempts to create
+> a simpler vector.
+
+# Named Lists and `unlist()`
+
+Consider:
+
+```{r}
+person <- list(
+  name = "Sujan",
+  age = 25
+)
+
+unlist(person)
+```
+
+The result is a vector.
+
+Because the vector must have a single basic type, R may perform type
+coercion.
+
+# Checking Whether an Object Is a List
+
+Use:
+
+```{r}
+is.list(person)
+```
+
+You can also use:
+
+```{r}
+typeof(person)
+class(person)
+```
+
+# Lists and Vectors
+
+A vector normally contains values of one basic type:
+
+```{r}
+numbers <- c(10, 20, 30)
+
+typeof(numbers)
+```
+
+A list can contain different types:
+
+```{r}
+mixed <- list(
+  10,
+  "Hello",
+  TRUE,
+  c(1, 2, 3)
+)
+
+mixed
+```
+
+Compare:
+
+```text
+Vector:
+[10, 20, 30]
+
+List:
+[10, "Hello", TRUE, c(1, 2, 3)]
+```
+
+# Lists and Matrices
+
+A matrix has a fixed two-dimensional structure.
+
+```{r}
+m <- matrix(
+  1:6,
+  nrow = 2,
+  byrow = TRUE
+)
+
+m
+```
+
+A list can contain multiple objects of completely different structures.
+
+```{r}
+objects <- list(
+  numbers = c(1, 2, 3),
+  matrix = m,
+  text = "Hello",
+  flag = TRUE
+)
+
+objects
+```
+
+# Lists and Data Frames
+
+A data frame is closely related to a list.
+
+Each column of a data frame can have a different type.
+
+For example:
+
+```{r}
+df <- data.frame(
+  name = c("Alice", "Bob"),
+  age = c(23, 25),
+  passed = c(TRUE, TRUE)
+)
+
+df
+```
+
+Conceptually, a data frame can be thought of as a collection of columns,
+where each column has the same number of rows.
+
+You can inspect its structure:
+
+```{r}
+str(df)
+```
+
+This relationship between lists and data frames will become important in the
+next chapter.
+
+# List Indexing — Important Examples
+
+Consider:
+
+```{r}
+student <- list(
+  name = "Sujan",
+  scores = c(80, 90, 85),
+  passed = TRUE
+)
+```
+
+## First element
+
+```{r}
+student[1]
+```
+
+Returns a list.
+
+## First element's value
+
+```{r}
+student[[1]]
+```
+
+Returns the actual value.
+
+## Name
+
+```{r}
+student$name
+```
+
+## Name using `[[ ]]`
+
+```{r}
+student[["name"]]
+```
+
+## First score
+
+```{r}
+student$scores[1]
+```
+
+## All scores
+
+```{r}
+student$scores
+```
+
+## Second score
+
+```{r}
+student[["scores"]][2]
+```
+
+# Lists with Variables as Names
+
+Suppose the element name is stored in a variable.
+
+```{r}
+student <- list(
+  name = "Sujan",
+  age = 25
+)
+
+field <- "name"
+```
+
+Using `$`:
+
+```r
+student$field
+```
+
+This looks for an element literally named `field`.
+
+Instead, use `[[ ]]`:
+
+```{r}
+student[[field]]
+```
+
+This retrieves the element whose name is stored in `field`.
+
+> **Important:** `[[ ]]` is useful when the name or position is stored in a
+> variable.
+
+# Useful List Functions
+
+## `names()`
+
+Get or set names.
+
+```{r}
+student <- list(
+  "Sujan",
+  25,
+  TRUE
+)
+
+names(student) <- c(
+  "name",
+  "age",
+  "student"
+)
+
+student
+```
+
+## `length()`
+
+Get the number of top-level elements.
+
+```{r}
+length(student)
+```
+
+## `str()`
+
+Inspect the structure.
+
+```{r}
+str(student)
+```
+
+## `unlist()`
+
+Convert a list into a simpler vector when possible.
+
+```{r}
+unlist(student)
+```
+
+## `is.list()`
+
+Check whether an object is a list.
+
+```{r}
+is.list(student)
+```
+
+# Applying Functions to Lists
+
+R provides several functions for applying operations to list elements.
+
+One of the most useful is `lapply()`.
+
+```{r}
+numbers <- list(
+  c(1, 2, 3),
+  c(4, 5, 6),
+  c(7, 8, 9)
+)
+
+lapply(numbers, mean)
+```
+
+This calculates the mean of each vector.
+
+The result is another list.
+
+# `sapply()`
+
+`sapply()` is similar to `lapply()` but tries to simplify the result.
+
+```{r}
+sapply(numbers, mean)
+```
+
+The result may be a vector instead of a list.
+
+Compare:
+
+```{r}
+lapply(numbers, mean)
+sapply(numbers, mean)
+```
+
+> **For beginners:** Learn `lapply()` first. Later, `sapply()` and other
+> `apply`-family functions can be explored in more detail.
+
+# List Function Reference
+
+| Function | Purpose |
+|---|---|
+| `list()` | Create a list |
+| `length()` | Number of top-level elements |
+| `names()` | Get or set element names |
+| `str()` | Inspect structure |
+| `is.list()` | Check whether object is a list |
+| `unlist()` | Simplify list into vector |
+| `c()` | Combine lists |
+| `rep()` | Repeat a list |
+| `lapply()` | Apply function and return list |
+| `sapply()` | Apply function and simplify result |
+
+# List Indexing Reference
+
+Given:
+
+```{r}
+student <- list(
+  name = "Sujan",
+  age = 25,
+  scores = c(80, 90, 85)
+)
+```
+
+| Operation | Code | Result |
+|---|---|---|
+| First element as list | `student[1]` | List |
+| First element | `student[[1]]` | Value |
+| Name | `student$name` | Value |
+| Name with `[[ ]]` | `student[["name"]]` | Value |
+| Scores | `student$scores` | Vector |
+| First score | `student$scores[1]` | Value |
+| Scores with `[[ ]]` | `student[["scores"]]` | Vector |
+| Second score | `student[["scores"]][2]` | Value |
+
+# Python Comparison
+
+If you know Python, a basic R list is somewhat similar to a Python list:
+
+| Operation | R | Python |
+|---|---|---|
+| Create | `list(1, "hello", TRUE)` | `[1, "hello", True]` |
+| First element | `x[[1]]` | `x[0]` |
+| Length | `length(x)` | `len(x)` |
+| Add element | `x[[4]] <- value` | `x.append(value)` |
+| Remove | `x[[2]] <- NULL` | `del x[1]` |
+
+However, R's `$` and named-list behavior makes R lists particularly useful
+for structured objects.
+
+# Practice Exercises
+
+## Exercise 1 — Create a List
+
+Create a list called `student` containing:
+
+- Name
+- Age
+- University
+- A vector containing three exam scores
+- A logical value indicating whether the student passed
+
+Then:
+
+1. Print the list.
+2. Print its structure using `str()`.
+3. Print the student's name.
+4. Print the second exam score.
+5. Print the number of elements.
+
+## Exercise 2 — Modify a List
+
+Using your `student` list:
+
+1. Change the age.
+2. Add a country.
+3. Add another exam score.
+4. Remove the country.
+
+## Exercise 3 — Nested List
+
+Create:
+
+```text
+student
+├── name
+├── contact
+│   ├── email
+│   └── phone
+└── scores
+```
+
+Then retrieve:
+
+1. Student name
+2. Email
+3. Phone
+4. First score
+
+## Exercise 4 — `lapply()`
+
+Create:
+
+```{r}
+numbers <- list(
+  c(10, 20, 30),
+  c(5, 15, 25),
+  c(100, 200, 300)
+)
+```
+
+Use `lapply()` to calculate:
+
+1. Mean
+2. Maximum
+3. Minimum
+
+Then use `sapply()` and compare the results.
+
+# Key Takeaways
+
+- A list can contain objects of different types.
+- Lists can contain vectors, matrices, data frames, and other lists.
+- `list()` creates a list.
+- `$` accesses a named element.
+- `[[ ]]` extracts an individual element.
+- `[ ]` returns a sublist.
+- Understanding `[ ]`, `[[ ]]`, and `$` is essential when working with lists.
+- Lists can be nested.
+- `str()` is extremely useful for understanding complex objects.
+- `unlist()` can simplify a list into a vector.
+- `lapply()` applies a function to each list element and returns a list.
+- Data frames are closely related to lists, which will become clearer in the
+  next chapter.

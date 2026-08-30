@@ -1,0 +1,76 @@
+project:
+  type: website
+
+website:
+  title: "R Programming & Data Science Handbook"
+
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+
+      - text: R Basics
+        menu:
+          - lessons/01-basics.qmd
+          - lessons/02-data-types.qmd
+          - lessons/03-vectors.qmd
+          - lessons/04-matrices.qmd
+          - lessons/05-lists.qmd
+          - lessons/06-data-frames.qmd
+          - lessons/07-control-flow.qmd
+          - lessons/08-functions.qmd
+          - lessons/09-missing-values.qmd
+
+      - text: Data Analysis
+        menu:
+          - data-analysis/01-import.qmd
+          - data-analysis/02-dplyr.qmd
+          - data-analysis/03-tidyr.qmd
+          - data-analysis/04-ggplot2.qmd
+
+      - text: Statistics
+        menu:
+          - statistics/01-descriptive-statistics.qmd
+          - statistics/02-probability.qmd
+
+      - href: about.qmd
+        text: About
+
+  sidebar:
+    style: "floating"
+    contents:
+      - section: "R Basics"
+        contents:
+          - lessons/01-basics.qmd
+          - lessons/02-data-types.qmd
+          - lessons/03-vectors.qmd
+          - lessons/04-matrices.qmd
+          - lessons/05-lists.qmd
+          - lessons/06-data-frames.qmd
+          - lessons/07-control-flow.qmd
+          - lessons/08-functions.qmd
+          - lessons/09-missing-values.qmd
+
+      - section: "Data Analysis"
+        contents:
+          - data-analysis/01-import.qmd
+          - data-analysis/02-dplyr.qmd
+          - data-analysis/03-tidyr.qmd
+          - data-analysis/04-ggplot2.qmd
+
+      - section: "Statistics"
+        contents:
+          - statistics/01-descriptive-statistics.qmd
+          - statistics/02-probability.qmd
+
+      - section: "Reference"
+        contents:
+          - reference/quick-reference.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-copy: true
+    code-fold: false
+    smooth-scroll: true

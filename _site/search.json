@@ -1,0 +1,952 @@
+[
+  {
+    "objectID": "lessons/01-basics.html",
+    "href": "lessons/01-basics.html",
+    "title": "01-basics",
+    "section": "",
+    "text": "R is a programming language designed primarily for statistical computing, data analysis, and visualization.\nThis chapter introduces the basic syntax and operations used in R.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "01-basics"
+    ]
+  },
+  {
+    "objectID": "lessons/01-basics.html#assignment-operator",
+    "href": "lessons/01-basics.html#assignment-operator",
+    "title": "01-basics",
+    "section": "Assignment Operator",
+    "text": "Assignment Operator\nWe can also use = operator for assignment:\n\nx = 20\nx\n\n[1] 20\n\n\nHowever, &lt;- is the most conventional assignment operator in R.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "01-basics"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "r-programming-handbook",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "lessons/02-data-types.html",
+    "href": "lessons/02-data-types.html",
+    "title": "Data Types",
+    "section": "",
+    "text": "Every value in R has a type. Understanding data types is important because different types behave differently when we perform calculations, comparisons, or transformations.\nThe most common basic data types in R are:\n\nNumeric\nInteger\nCharacter\nLogical\nComplex\n\nR also has special values such as NA, NULL, NaN, and Inf.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#example",
+    "href": "lessons/02-data-types.html#example",
+    "title": "Data Types",
+    "section": "Example",
+    "text": "Example\n\nprice &lt;- 19.99\ntemperature &lt;- 23.5\naverage &lt;- 87.25",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#combining-strings",
+    "href": "lessons/02-data-types.html#combining-strings",
+    "title": "Data Types",
+    "section": "Combining strings",
+    "text": "Combining strings\nUse paste():\n\nfirst_name &lt;- \"Sujan\"\nlast_name &lt;- \"Karna\"\n\npaste(first_name, last_name)\n\n[1] \"Sujan Karna\"\n\n\nOr use paste0():\n\npaste0(first_name, \"_\", last_name)\n\n[1] \"Sujan_Karna\"\n\n\nThe difference is that paste() inserts a separator by default, while paste0() does not.\n\npaste(\"Hello\", \"World\")\n\n[1] \"Hello World\"\n\npaste0(\"Hello\", \"World\")\n\n[1] \"HelloWorld\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#logical-expressions",
+    "href": "lessons/02-data-types.html#logical-expressions",
+    "title": "Data Types",
+    "section": "Logical expressions",
+    "text": "Logical expressions\nComparisons produce logical values:\n\nx &lt;- 20\n\nx &gt; 10\n\n[1] TRUE\n\nx &lt; 10\n\n[1] FALSE\n\nx == 20\n\n[1] TRUE\n\nx != 20\n\n[1] FALSE\n\n\nOutput:\nTRUE\nFALSE\nTRUE\nFALSE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#typeof",
+    "href": "lessons/02-data-types.html#typeof",
+    "title": "Data Types",
+    "section": "typeof()",
+    "text": "typeof()\ntypeof() tells you the underlying storage type.\n\nx &lt;- 10\ntypeof(x)\n\n[1] \"double\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#class",
+    "href": "lessons/02-data-types.html#class",
+    "title": "Data Types",
+    "section": "class()",
+    "text": "class()\nclass() tells you the object’s class.\n\nx &lt;- 10\nclass(x)\n\n[1] \"numeric\"\n\n\nFor many basic objects, typeof() and class() may give similar results, but they answer different questions.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#type-checking-functions",
+    "href": "lessons/02-data-types.html#type-checking-functions",
+    "title": "Data Types",
+    "section": "Type-checking functions",
+    "text": "Type-checking functions\nR provides functions that return TRUE or FALSE.\n\nis.numeric(10)\n\n[1] TRUE\n\nis.character(\"Hello\")\n\n[1] TRUE\n\nis.logical(TRUE)\n\n[1] TRUE\n\nis.integer(10L)\n\n[1] TRUE\n\n\nSome other useful functions:\n\nis.double(10)\n\n[1] TRUE\n\nis.complex(2 + 3i)\n\n[1] TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#convert-to-numeric",
+    "href": "lessons/02-data-types.html#convert-to-numeric",
+    "title": "Data Types",
+    "section": "Convert to numeric",
+    "text": "Convert to numeric\n\nx &lt;- \"100\"\n\nas.numeric(x)\n\n[1] 100\n\n\nCheck:\n\ntypeof(as.numeric(x))\n\n[1] \"double\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#convert-to-character",
+    "href": "lessons/02-data-types.html#convert-to-character",
+    "title": "Data Types",
+    "section": "Convert to character",
+    "text": "Convert to character\n\nx &lt;- 100\n\nas.character(x)\n\n[1] \"100\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#convert-to-integer",
+    "href": "lessons/02-data-types.html#convert-to-integer",
+    "title": "Data Types",
+    "section": "Convert to integer",
+    "text": "Convert to integer\n\nx &lt;- 10.5\n\nas.integer(x)\n\n[1] 10\n\n\nNote that conversion to integer removes the decimal part rather than rounding the value.\n\nas.integer(10.9)\n\n[1] 10\n\nas.integer(10.1)\n\n[1] 10",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#convert-to-logical",
+    "href": "lessons/02-data-types.html#convert-to-logical",
+    "title": "Data Types",
+    "section": "Convert to logical",
+    "text": "Convert to logical\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(0)\n\n[1] FALSE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#na",
+    "href": "lessons/02-data-types.html#na",
+    "title": "Data Types",
+    "section": "NA",
+    "text": "NA\nNA represents a missing value.\n\nx &lt;- c(10, 20, NA, 40)\n\nx\n\n[1] 10 20 NA 40\n\n\nCheck for missing values:\n\nis.na(x)\n\n[1] FALSE FALSE  TRUE FALSE\n\n\nThis returns:\nFALSE FALSE TRUE FALSE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#null",
+    "href": "lessons/02-data-types.html#null",
+    "title": "Data Types",
+    "section": "NULL",
+    "text": "NULL\nNULL represents the absence of a value.\n\nx &lt;- NULL\n\nx\n\nNULL\n\n\nCheck:\n\nis.null(x)\n\n[1] TRUE\n\n\nNULL is different from NA.\n\nNA means a value is missing.\nNULL means there is no value.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#nan",
+    "href": "lessons/02-data-types.html#nan",
+    "title": "Data Types",
+    "section": "NaN",
+    "text": "NaN\nNaN means Not a Number.\nIt can occur when an undefined numerical operation is performed.\n\n0 / 0\n\n[1] NaN\n\n\nCheck:\n\nis.nan(0 / 0)\n\n[1] TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#inf",
+    "href": "lessons/02-data-types.html#inf",
+    "title": "Data Types",
+    "section": "Inf",
+    "text": "Inf\nInf represents positive infinity.\n\n1 / 0\n\n[1] Inf\n\n\nNegative infinity:\n\n-1 / 0\n\n[1] -Inf\n\n\nCheck:\n\nis.infinite(1 / 0)\n\n[1] TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#exercise-1",
+    "href": "lessons/02-data-types.html#exercise-1",
+    "title": "Data Types",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nx &lt;- 25\ntypeof(x)\n\n[1] \"double\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#exercise-2",
+    "href": "lessons/02-data-types.html#exercise-2",
+    "title": "Data Types",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\nx &lt;- 25L\ntypeof(x)\n\n[1] \"integer\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#exercise-3",
+    "href": "lessons/02-data-types.html#exercise-3",
+    "title": "Data Types",
+    "section": "Exercise 3",
+    "text": "Exercise 3\n\nx &lt;- c(1, 2, \"3\")\ntypeof(x)\n\n[1] \"character\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#exercise-4",
+    "href": "lessons/02-data-types.html#exercise-4",
+    "title": "Data Types",
+    "section": "Exercise 4",
+    "text": "Exercise 4\n\nx &lt;- c(TRUE, FALSE, TRUE)\ntypeof(x)\n\n[1] \"logical\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/02-data-types.html#exercise-5",
+    "href": "lessons/02-data-types.html#exercise-5",
+    "title": "Data Types",
+    "section": "Exercise 5",
+    "text": "Exercise 5\n\nx &lt;- c(10, NA, 30)\n\nis.na(x)\n\n[1] FALSE  TRUE FALSE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "02-data-types"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html",
+    "href": "lessons/03-vectors.html",
+    "title": "03-vectors",
+    "section": "",
+    "text": "A vector is one of the fundamental data structures in R.\nA vector stores multiple values of the same basic data type.\nFor example:\n\nnumbers &lt;- c(10, 20, 30, 40, 50)\n\nnumbers\n\n[1] 10 20 30 40 50\n\n\nThe function c() means combine or concatenate.\n\nc(10, 20, 30, 40)\n\n[1] 10 20 30 40\n\n\ncreates a vector containing four values.\n\nImportant: R uses 1-based indexing, meaning the first element is at position 1.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#using-c",
+    "href": "lessons/03-vectors.html#using-c",
+    "title": "03-vectors",
+    "section": "Using c()",
+    "text": "Using c()\nThe most common way to create a vector is with c().\n\nnumbers &lt;- c(10, 20, 30, 40, 50)\n\nnumbers\n\n[1] 10 20 30 40 50\n\n\nCharacter vector:\n\nnames &lt;- c(\"Alice\", \"Bob\", \"Charlie\")\n\nnames\n\n[1] \"Alice\"   \"Bob\"     \"Charlie\"\n\n\nLogical vector:\n\npassed &lt;- c(TRUE, FALSE, TRUE, TRUE)\n\npassed\n\n[1]  TRUE FALSE  TRUE  TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#selecting-multiple-elements",
+    "href": "lessons/03-vectors.html#selecting-multiple-elements",
+    "title": "03-vectors",
+    "section": "Selecting Multiple Elements",
+    "text": "Selecting Multiple Elements\nUse a vector of positions.\n\nnumbers[c(1, 3, 5)]\n\n[1] 10 30 50\n\n\nResult:\n10 30 50\nSelect a range:\n\nnumbers[2:4]\n\n[1] 20 30 40\n\n\nResult:\n20 30 40",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#order",
+    "href": "lessons/03-vectors.html#order",
+    "title": "03-vectors",
+    "section": "order()",
+    "text": "order()\norder() returns the positions that would sort the vector.\n\nx &lt;- c(40, 10, 50, 20, 30)\n\norder(x)\n\n[1] 2 4 5 1 3\n\n\nYou can use it to reorder the vector:\n\nx[order(x)]\n\n[1] 10 20 30 40 50\n\n\nDescending:\n\nx[order(x, decreasing = TRUE)]\n\n[1] 50 40 30 20 10\n\n\n\nDifference: sort() returns sorted values, while order() returns their positions.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#any",
+    "href": "lessons/03-vectors.html#any",
+    "title": "03-vectors",
+    "section": "any()",
+    "text": "any()\nChecks whether at least one element satisfies a condition.\n\nx &lt;- c(10, 20, 30, 40, 50)\n\nany(x &gt; 45)\n\n[1] TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#all",
+    "href": "lessons/03-vectors.html#all",
+    "title": "03-vectors",
+    "section": "all()",
+    "text": "all()\nChecks whether all elements satisfy a condition.\n\nall(x &gt; 5)\n\n[1] TRUE\n\n\nAnother example:\n\nall(x &gt; 20)\n\n[1] FALSE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#create",
+    "href": "lessons/03-vectors.html#create",
+    "title": "03-vectors",
+    "section": "Create",
+    "text": "Create\n\nc(1, 2, 3)\n\n[1] 1 2 3\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\nseq(1, 10, by = 2)\n\n[1] 1 3 5 7 9\n\nrep(5, times = 3)\n\n[1] 5 5 5",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#inspect",
+    "href": "lessons/03-vectors.html#inspect",
+    "title": "03-vectors",
+    "section": "Inspect",
+    "text": "Inspect\n\nlength(x)\n\n[1] 3\n\ntypeof(x)\n\n[1] \"character\"\n\nclass(x)\n\n[1] \"character\"\n\nis.vector(x)\n\n[1] TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#index",
+    "href": "lessons/03-vectors.html#index",
+    "title": "03-vectors",
+    "section": "Index",
+    "text": "Index\n\nx[1]\n\n[1] \"1\"\n\nx[2:4]\n\n[1] \"2\" \"3\" NA \n\nx[c(1, 3)]\n\n[1] \"1\" \"3\"\n\nx[-1]\n\n[1] \"2\" \"3\"\n\nx[x &gt; 20]\n\n[1] \"3\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#modify",
+    "href": "lessons/03-vectors.html#modify",
+    "title": "03-vectors",
+    "section": "Modify",
+    "text": "Modify\n\nx[1] &lt;- 100\nx &lt;- c(x, 200)\nx &lt;- x[-2]\nx\n\n[1] \"100\" \"3\"   \"200\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#analyze",
+    "href": "lessons/03-vectors.html#analyze",
+    "title": "03-vectors",
+    "section": "Analyze",
+    "text": "Analyze\n\nx = as.numeric(x)\nx\n\n[1] 100   3 200\n\nsum(x)\n\n[1] 303\n\nmean(x)\n\n[1] 101\n\nmedian(x)\n\n[1] 100\n\nmin(x)\n\n[1] 3\n\nmax(x)\n\n[1] 200\n\nsd(x)\n\n[1] 98.50381",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#transform",
+    "href": "lessons/03-vectors.html#transform",
+    "title": "03-vectors",
+    "section": "Transform",
+    "text": "Transform\n\nsort(x)\n\n[1]   3 100 200\n\nsort(x, decreasing = TRUE)\n\n[1] 200 100   3\n\nrev(x)\n\n[1] 200   3 100\n\nunique(x)\n\n[1] 100   3 200",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#search",
+    "href": "lessons/03-vectors.html#search",
+    "title": "03-vectors",
+    "section": "Search",
+    "text": "Search\n\nwhich(x &gt; 20)\n\n[1] 1 3\n\nany(x &gt; 20)\n\n[1] TRUE\n\nall(x &gt; 20)\n\n[1] FALSE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#missing-values",
+    "href": "lessons/03-vectors.html#missing-values",
+    "title": "03-vectors",
+    "section": "Missing Values",
+    "text": "Missing Values\n\nis.na(x)\n\n[1] FALSE FALSE FALSE\n\nsum(is.na(x))\n\n[1] 0\n\nmean(x, na.rm = TRUE)\n\n[1] 101",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#exercise-1-create-a-vector",
+    "href": "lessons/03-vectors.html#exercise-1-create-a-vector",
+    "title": "03-vectors",
+    "section": "Exercise 1 — Create a Vector",
+    "text": "Exercise 1 — Create a Vector\nCreate a vector containing the following values:\n15, 25, 35, 45, 55\nThen calculate:\n\nLength\nSum\nMean\nMedian\nStandard deviation",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#exercise-2-indexing",
+    "href": "lessons/03-vectors.html#exercise-2-indexing",
+    "title": "03-vectors",
+    "section": "Exercise 2 — Indexing",
+    "text": "Exercise 2 — Indexing\nUsing the vector:\n\nnumbers &lt;- c(10, 20, 30, 40, 50)\n\nFind:\n\nThe first element\nThe last element\nThe second and third elements\nAll values greater than 25\nAll values except the first element",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#exercise-3-filtering",
+    "href": "lessons/03-vectors.html#exercise-3-filtering",
+    "title": "03-vectors",
+    "section": "Exercise 3 — Filtering",
+    "text": "Exercise 3 — Filtering\nUsing:\n\nscores &lt;- c(45, 67, 82, 91, 56, 73, 88)\n\nFind:\n\nScores greater than 70\nScores between 60 and 90\nThe position of scores greater than 80\nWhether any score is below 50\nWhether all scores are above 40",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/03-vectors.html#exercise-4-frequency-table",
+    "href": "lessons/03-vectors.html#exercise-4-frequency-table",
+    "title": "03-vectors",
+    "section": "Exercise 4 — Frequency Table",
+    "text": "Exercise 4 — Frequency Table\nCreate a vector:\n\ngrades &lt;- c(\n  \"A\", \"B\", \"A\", \"C\", \"B\",\n  \"A\", \"A\", \"C\", \"B\", \"A\"\n)\n\nUse table() to determine how many students received each grade.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "03-vectors"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html",
+    "href": "lessons/04-matrices.html",
+    "title": "04-matrices",
+    "section": "",
+    "text": "A matrix is a two-dimensional data structure in R.\nA matrix consists of:\n\nRows\nColumns\nElements\n\nUnlike a data frame, all elements in a matrix normally have the same basic data type.\nFor example:\n\nmatrix(\n  c(1, 2, 3, 4, 5, 6),\n  nrow = 2,\n  ncol = 3\n)\n\n     [,1] [,2] [,3]\n[1,]    1    3    5\n[2,]    2    4    6\n\n\nThis creates:\n     [,1] [,2] [,3]\n[1,]    1    3    5\n[2,]    2    4    6",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#fill-by-row",
+    "href": "lessons/04-matrices.html#fill-by-row",
+    "title": "04-matrices",
+    "section": "Fill by Row",
+    "text": "Fill by Row\nUse byrow = TRUE.\n\nmatrix(\n  1:6,\n  nrow = 2,\n  ncol = 3,\n  byrow = TRUE\n)\n\n     [,1] [,2] [,3]\n[1,]    1    2    3\n[2,]    4    5    6\n\n\nResult:\n     [,1] [,2] [,3]\n[1,]    1    2    3\n[2,]    4    5    6\n\nRemember: By default, R fills matrices by column.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#number-of-rows",
+    "href": "lessons/04-matrices.html#number-of-rows",
+    "title": "04-matrices",
+    "section": "Number of Rows",
+    "text": "Number of Rows\n\nnrow(m)\n\n[1] 2",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#number-of-columns",
+    "href": "lessons/04-matrices.html#number-of-columns",
+    "title": "04-matrices",
+    "section": "Number of Columns",
+    "text": "Number of Columns\n\nncol(m)\n\n[1] 3",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#number-of-elements",
+    "href": "lessons/04-matrices.html#number-of-elements",
+    "title": "04-matrices",
+    "section": "Number of Elements",
+    "text": "Number of Elements\n\nlength(m)\n\n[1] 6",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#addition",
+    "href": "lessons/04-matrices.html#addition",
+    "title": "04-matrices",
+    "section": "Addition",
+    "text": "Addition\n\nA + B\n\n     [,1] [,2]\n[1,]    6    8\n[2,]   10   12",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#subtraction",
+    "href": "lessons/04-matrices.html#subtraction",
+    "title": "04-matrices",
+    "section": "Subtraction",
+    "text": "Subtraction\n\nA - B\n\n     [,1] [,2]\n[1,]   -4   -4\n[2,]   -4   -4",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#multiplication-by-a-scalar",
+    "href": "lessons/04-matrices.html#multiplication-by-a-scalar",
+    "title": "04-matrices",
+    "section": "Multiplication by a Scalar",
+    "text": "Multiplication by a Scalar\n\nA * 2\n\n     [,1] [,2]\n[1,]    2    4\n[2,]    6    8\n\n\nEvery element is multiplied by 2.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#row-sums",
+    "href": "lessons/04-matrices.html#row-sums",
+    "title": "04-matrices",
+    "section": "Row Sums",
+    "text": "Row Sums\n\nrowSums(scores)\n\n[1] 240 255 270",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#column-sums",
+    "href": "lessons/04-matrices.html#column-sums",
+    "title": "04-matrices",
+    "section": "Column Sums",
+    "text": "Column Sums\n\ncolSums(scores)\n\n[1] 255 253 257",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#row-means",
+    "href": "lessons/04-matrices.html#row-means",
+    "title": "04-matrices",
+    "section": "Row Means",
+    "text": "Row Means\n\nrowMeans(scores)\n\n[1] 80 85 90",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#column-means",
+    "href": "lessons/04-matrices.html#column-means",
+    "title": "04-matrices",
+    "section": "Column Means",
+    "text": "Column Means\n\ncolMeans(scores)\n\n[1] 85.00000 84.33333 85.66667",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#apply-a-function-to-rows",
+    "href": "lessons/04-matrices.html#apply-a-function-to-rows",
+    "title": "04-matrices",
+    "section": "Apply a Function to Rows",
+    "text": "Apply a Function to Rows\n\napply(scores, 1, mean)\n\n[1] 80 85 90",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#apply-a-function-to-columns",
+    "href": "lessons/04-matrices.html#apply-a-function-to-columns",
+    "title": "04-matrices",
+    "section": "Apply a Function to Columns",
+    "text": "Apply a Function to Columns\n\napply(scores, 2, mean)\n\n[1] 85.00000 84.33333 85.66667\n\n\nFor example:\n\napply(scores, 1, max)\n\n[1] 90 95 92\n\n\nfinds the maximum value in each row.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#rbind",
+    "href": "lessons/04-matrices.html#rbind",
+    "title": "04-matrices",
+    "section": "rbind()",
+    "text": "rbind()\nrbind() means row bind.\n\nA &lt;- matrix(\n  1:4,\n  nrow = 2,\n  byrow = TRUE\n)\n\nB &lt;- matrix(\n  5:8,\n  nrow = 2,\n  byrow = TRUE\n)\n\nrbind(A, B)\n\n     [,1] [,2]\n[1,]    1    2\n[2,]    3    4\n[3,]    5    6\n[4,]    7    8\n\n\nThis adds rows.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#cbind",
+    "href": "lessons/04-matrices.html#cbind",
+    "title": "04-matrices",
+    "section": "cbind()",
+    "text": "cbind()\ncbind() means column bind.\n\ncbind(A, B)\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    2    5    6\n[2,]    3    4    7    8\n\n\nThis adds columns.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#exercise-1-create-a-matrix",
+    "href": "lessons/04-matrices.html#exercise-1-create-a-matrix",
+    "title": "04-matrices",
+    "section": "Exercise 1 — Create a Matrix",
+    "text": "Exercise 1 — Create a Matrix\nCreate the following matrix:\n10 20 30\n40 50 60\n70 80 90\nThen find:\n\nNumber of rows\nNumber of columns\nNumber of elements\nThe value in row 2, column 3",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#exercise-2-indexing",
+    "href": "lessons/04-matrices.html#exercise-2-indexing",
+    "title": "04-matrices",
+    "section": "Exercise 2 — Indexing",
+    "text": "Exercise 2 — Indexing\nUsing:\n\nm &lt;- matrix(\n  1:16,\n  nrow = 4,\n  byrow = TRUE\n)\n\nFind:\n\nThe first row\nThe last row\nThe second column\nThe last column\nElements in rows 1 and 3\nElements in columns 2 and 4",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#exercise-3-statistics",
+    "href": "lessons/04-matrices.html#exercise-3-statistics",
+    "title": "04-matrices",
+    "section": "Exercise 3 — Statistics",
+    "text": "Exercise 3 — Statistics\nUsing:\n\nscores &lt;- matrix(\n  c(\n    80, 90, 70,\n    85, 75, 95,\n    90, 88, 92\n  ),\n  nrow = 3,\n  byrow = TRUE\n)\n\nCalculate:\n\nSum of each row\nSum of each column\nMean of each row\nMean of each column\nMaximum value of each row",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/04-matrices.html#exercise-4-matrix-multiplication",
+    "href": "lessons/04-matrices.html#exercise-4-matrix-multiplication",
+    "title": "04-matrices",
+    "section": "Exercise 4 — Matrix Multiplication",
+    "text": "Exercise 4 — Matrix Multiplication\nCreate:\n\nA &lt;- matrix(\n  c(1, 2, 3, 4),\n  nrow = 2,\n  byrow = TRUE\n)\n\nB &lt;- matrix(\n  c(5, 6, 7, 8),\n  nrow = 2,\n  byrow = TRUE\n)\n\nCalculate:\n\nA + B\nA * B\nA %*% B\nt(A)\n\nPay attention to the difference between * and %*%.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "04-matrices"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html",
+    "href": "lessons/05-lists.html",
+    "title": "05-lists",
+    "section": "",
+    "text": "A list is a flexible R data structure that can contain multiple objects, including objects of different types.\nUnlike a vector, which normally contains values of the same basic type, a list can contain:\n\nNumbers\nCharacter strings\nLogical values\nVectors\nMatrices\nOther lists\nData frames\nFunctions\nOther R objects\n\nFor example:\n\nperson &lt;- list(\n  name = \"Sujan\",\n  age = 25,\n  student = TRUE\n)\n\nperson\n\n$name\n[1] \"Sujan\"\n\n$age\n[1] 25\n\n$student\n[1] TRUE\n\n\nThis list contains a character value, a numeric value, and a logical value.\n\nKey idea: A vector is usually homogeneous, while a list can contain heterogeneous objects.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#example",
+    "href": "lessons/05-lists.html#example",
+    "title": "05-lists",
+    "section": "Example",
+    "text": "Example\n\nperson[1]\n\n$name\n[1] \"Sujan\"\n\n\nreturns a list.\n\nperson[[1]]\n\n[1] \"Sujan\"\n\n\nreturns:\n\"Sujan\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#first-element",
+    "href": "lessons/05-lists.html#first-element",
+    "title": "05-lists",
+    "section": "First element",
+    "text": "First element\n\nstudent[1]\n\n$name\n[1] \"Sujan\"\n\n\nReturns a list.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#first-elements-value",
+    "href": "lessons/05-lists.html#first-elements-value",
+    "title": "05-lists",
+    "section": "First element’s value",
+    "text": "First element’s value\n\nstudent[[1]]\n\n[1] \"Sujan\"\n\n\nReturns the actual value.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#name",
+    "href": "lessons/05-lists.html#name",
+    "title": "05-lists",
+    "section": "Name",
+    "text": "Name\n\nstudent$name\n\n[1] \"Sujan\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#name-using",
+    "href": "lessons/05-lists.html#name-using",
+    "title": "05-lists",
+    "section": "Name using [[ ]]",
+    "text": "Name using [[ ]]\n\nstudent[[\"name\"]]\n\n[1] \"Sujan\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#first-score",
+    "href": "lessons/05-lists.html#first-score",
+    "title": "05-lists",
+    "section": "First score",
+    "text": "First score\n\nstudent$scores[1]\n\n[1] 80",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#all-scores",
+    "href": "lessons/05-lists.html#all-scores",
+    "title": "05-lists",
+    "section": "All scores",
+    "text": "All scores\n\nstudent$scores\n\n[1] 80 90 85",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#second-score",
+    "href": "lessons/05-lists.html#second-score",
+    "title": "05-lists",
+    "section": "Second score",
+    "text": "Second score\n\nstudent[[\"scores\"]][2]\n\n[1] 90",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#names",
+    "href": "lessons/05-lists.html#names",
+    "title": "05-lists",
+    "section": "names()",
+    "text": "names()\nGet or set names.\n\nstudent &lt;- list(\n  \"Sujan\",\n  25,\n  TRUE\n)\n\nnames(student) &lt;- c(\n  \"name\",\n  \"age\",\n  \"student\"\n)\n\nstudent\n\n$name\n[1] \"Sujan\"\n\n$age\n[1] 25\n\n$student\n[1] TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#length",
+    "href": "lessons/05-lists.html#length",
+    "title": "05-lists",
+    "section": "length()",
+    "text": "length()\nGet the number of top-level elements.\n\nlength(student)\n\n[1] 3",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#str",
+    "href": "lessons/05-lists.html#str",
+    "title": "05-lists",
+    "section": "str()",
+    "text": "str()\nInspect the structure.\n\nstr(student)\n\nList of 3\n $ name   : chr \"Sujan\"\n $ age    : num 25\n $ student: logi TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#unlist",
+    "href": "lessons/05-lists.html#unlist",
+    "title": "05-lists",
+    "section": "unlist()",
+    "text": "unlist()\nConvert a list into a simpler vector when possible.\n\nunlist(student)\n\n   name     age student \n\"Sujan\"    \"25\"  \"TRUE\"",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#is.list",
+    "href": "lessons/05-lists.html#is.list",
+    "title": "05-lists",
+    "section": "is.list()",
+    "text": "is.list()\nCheck whether an object is a list.\n\nis.list(student)\n\n[1] TRUE",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#exercise-1-create-a-list",
+    "href": "lessons/05-lists.html#exercise-1-create-a-list",
+    "title": "05-lists",
+    "section": "Exercise 1 — Create a List",
+    "text": "Exercise 1 — Create a List\nCreate a list called student containing:\n\nName\nAge\nUniversity\nA vector containing three exam scores\nA logical value indicating whether the student passed\n\nThen:\n\nPrint the list.\nPrint its structure using str().\nPrint the student’s name.\nPrint the second exam score.\nPrint the number of elements.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#exercise-2-modify-a-list",
+    "href": "lessons/05-lists.html#exercise-2-modify-a-list",
+    "title": "05-lists",
+    "section": "Exercise 2 — Modify a List",
+    "text": "Exercise 2 — Modify a List\nUsing your student list:\n\nChange the age.\nAdd a country.\nAdd another exam score.\nRemove the country.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#exercise-3-nested-list",
+    "href": "lessons/05-lists.html#exercise-3-nested-list",
+    "title": "05-lists",
+    "section": "Exercise 3 — Nested List",
+    "text": "Exercise 3 — Nested List\nCreate:\nstudent\n├── name\n├── contact\n│   ├── email\n│   └── phone\n└── scores\nThen retrieve:\n\nStudent name\nEmail\nPhone\nFirst score",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  },
+  {
+    "objectID": "lessons/05-lists.html#exercise-4-lapply",
+    "href": "lessons/05-lists.html#exercise-4-lapply",
+    "title": "05-lists",
+    "section": "Exercise 4 — lapply()",
+    "text": "Exercise 4 — lapply()\nCreate:\n\nnumbers &lt;- list(\n  c(10, 20, 30),\n  c(5, 15, 25),\n  c(100, 200, 300)\n)\n\nUse lapply() to calculate:\n\nMean\nMaximum\nMinimum\n\nThen use sapply() and compare the results.",
+    "crumbs": [
+      "Home",
+      "R Basics",
+      "05-lists"
+    ]
+  }
+]

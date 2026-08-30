@@ -1,0 +1,35 @@
+{
+  "index.qmd": {
+    "index.html": "4a43dc00"
+  },
+  "about.qmd": {
+    "about.html": "1d79811b"
+  },
+  "lessons/01-basics.qmd": {
+    "01-basics.html": "2d671435"
+  },
+  "lessons/02-data-types.qmd": {
+    "02-data-types.html": "1cd0de2e"
+  },
+  "lessons/03-vectors.qmd": {
+    "03-vectors.html": "90b4af07"
+  },
+  "lessons/04-matrices.qmd": {
+    "04-matrices.html": "5e3bd787"
+  },
+  "lessons/05-lists.qmd": {
+    "05-lists.html": "9d933f57"
+  },
+  "lessons/06-data-frames.qmd": {
+    "06-data-frames.html": "c2d9ff50"
+  },
+  "lessons/07-control-flow.qmd": {
+    "07-control-flow.html": "bf25017e"
+  },
+  "lessons/08-functions.qmd": {
+    "08-functions.html": "838f9be1"
+  },
+  "lessons/09-missing-values.qmd": {
+    "09-missing-values.html": "6af96e4b"
+  }
+}

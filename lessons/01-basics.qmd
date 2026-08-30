@@ -1,0 +1,134 @@
+---
+title: "01-basics"
+format: html
+---
+
+# Introduction
+
+R is a programming language designed primarily for statistical computing, data analysis, and visualization.
+
+This chapter introduces the basic syntax and operations used in R.
+
+# Variables and Assignment
+
+R commonly uses `<-` operator for assignment.
+
+```{r}
+x <- 10
+name <- "Sujan"
+is_human <- TRUE
+salary <- 0.1
+```
+
+We can then inspect these values:
+
+```{r}
+x
+name
+is_human
+salary
+```
+
+## Assignment Operator
+
+We can also use `=` operator for assignment:
+
+```{r}
+x = 20
+x
+```
+
+However, `<-` is the most conventional assignment operator in R.
+
+# Arithmetic Operators
+
+```{r}
+10 + 5
+10 - 5
+10 * 5
+10 / 5
+10^2
+10 %% 3
+10 %/% 3
+```
+
+| Operator | Meaning            |
+|----------|--------------------|
+| `+`      | Addition           |
+| `-`      | Subtraction        |
+| `*`      | Multiplication     |
+| `/`      | Division           |
+| `^`      | Exponentiation     |
+| `%%`     | Modulo / remainder |
+| `%/%`    | Integer division   |
+
+# Comments
+
+Comments begin with `#`.
+
+```{r}
+# This is a comment
+
+x <- 10 # This assigns 10 to x
+```
+
+# Getting Help
+
+R has extensive built-in documentation.
+
+```         
+?mean
+```
+
+You can also use:
+
+```         
+help(mean)
+```
+
+To search for a topic:
+
+```         
+??regression
+```
+
+# Basic Output
+
+Use `print()` to explicitly print a value.
+
+```{r}
+print("Hello R!")
+```
+
+However, R can also display an expression directly:
+
+```{r}
+x <- 30
+x
+```
+
+# Checking the working Directory
+
+```{r}
+getwd()
+```
+
+Change it when necessary:
+
+```         
+setwd("path/to/directory")
+```
+> **Recommendation:** When working with RStudio Projects, prefer project-relative paths instead of repeatedly using `setwd()`.
+
+# Quick Reference
+
+| Command | Purpose |
+|---|---|
+| `<-` | Assignment |
+| `print()` | Print a value |
+| `getwd()` | Get working directory |
+| `setwd()` | Change working directory |
+| `?function` | Open function documentation |
+| `help()` | Open documentation |
+| `??term` | Search documentation |
+| `#` | Comment |

@@ -1,0 +1,31 @@
+{
+    "id": "7DA6E6E2",
+    "path": "D:/R/r-programming-handbook/lessons/03-vectors.qmd",
+    "project_path": "lessons/03-vectors.qmd",
+    "type": "quarto_markdown",
+    "hash": "3190234918",
+    "contents": "",
+    "dirty": false,
+    "created": 1787319058448.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "459,3",
+        "scrollLine": "0",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "10304:22409"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1787320152,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1787320152170,
+    "read_only": false,
+    "read_only_alternatives": []
+}

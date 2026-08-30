@@ -1,0 +1,564 @@
+---
+title: "Data Types"
+format: html
+---
+
+# Introduction
+
+Every value in R has a type. Understanding data types is important because
+different types behave differently when we perform calculations, comparisons,
+or transformations.
+
+The most common basic data types in R are:
+
+- Numeric
+- Integer
+- Character
+- Logical
+- Complex
+
+R also has special values such as `NA`, `NULL`, `NaN`, and `Inf`.
+
+# Numeric
+
+Numeric values represent numbers with decimal values.
+```{r}
+x <- 10
+y <- 3.14
+
+x
+y
+```
+
+Check the type:
+
+```{r}
+typeof(x)
+typeof(y)
+```
+
+Both are stored as:
+
+```text
+double
+```
+
+In R, regular numeric values are generally stored as double-precision
+floating-point numbers.
+
+## Example
+
+```{r}
+price <- 19.99
+temperature <- 23.5
+average <- 87.25
+```
+
+# Integer
+
+Integers represent whole numbers.
+
+An integer can be explicitly created by adding `L`:
+
+```{r}
+x <- 10L
+
+x
+typeof(x)
+```
+
+The result is:
+
+```text
+integer
+```
+
+Compare:
+
+```{r}
+x <- 10
+y <- 10L
+
+typeof(x)
+typeof(y)
+```
+
+Output:
+
+```text
+double
+integer
+```
+
+> **Remember:** `10` is normally stored as a `double`, while `10L` is stored
+> as an `integer`.
+
+# Character
+
+Character values represent text.
+
+They can be created using either single or double quotation marks.
+
+```{r}
+name <- "Sujan"
+country <- 'Germany'
+
+name
+country
+```
+
+Check the type:
+
+```{r}
+typeof(name)
+```
+
+Output:
+
+```text
+character
+```
+
+## Combining strings
+
+Use `paste()`:
+
+```{r}
+first_name <- "Sujan"
+last_name <- "Karna"
+
+paste(first_name, last_name)
+```
+
+Or use `paste0()`:
+
+```{r}
+paste0(first_name, "_", last_name)
+```
+
+The difference is that `paste()` inserts a separator by default,
+while `paste0()` does not.
+
+```{r}
+paste("Hello", "World")
+paste0("Hello", "World")
+```
+
+# Logical
+
+Logical values represent Boolean values.
+
+R has two logical values:
+
+```r
+TRUE
+FALSE
+```
+
+Example:
+
+```{r}
+is_student <- TRUE
+has_license <- FALSE
+
+is_student
+has_license
+```
+
+Check the type:
+
+```{r}
+typeof(is_student)
+```
+
+Output:
+
+```text
+logical
+```
+
+## Logical expressions
+
+Comparisons produce logical values:
+
+```{r}
+x <- 20
+
+x > 10
+x < 10
+x == 20
+x != 20
+```
+
+Output:
+
+```text
+TRUE
+FALSE
+TRUE
+FALSE
+```
+
+# Complex
+
+R supports complex numbers.
+
+```{r}
+z <- 2 + 3i
+
+z
+typeof(z)
+```
+
+The `i` represents the imaginary component.
+
+You can access the real and imaginary parts:
+
+```{r}
+Re(z)
+Im(z)
+```
+
+# Checking Data Types
+
+R provides several functions for inspecting objects.
+
+## `typeof()`
+
+`typeof()` tells you the underlying storage type.
+
+```{r}
+x <- 10
+typeof(x)
+```
+
+## `class()`
+
+`class()` tells you the object's class.
+
+```{r}
+x <- 10
+class(x)
+```
+
+For many basic objects, `typeof()` and `class()` may give similar results,
+but they answer different questions.
+
+## Type-checking functions
+
+R provides functions that return `TRUE` or `FALSE`.
+
+```{r}
+is.numeric(10)
+is.character("Hello")
+is.logical(TRUE)
+is.integer(10L)
+```
+
+Some other useful functions:
+
+```{r}
+is.double(10)
+is.complex(2 + 3i)
+```
+
+# Type Conversion
+
+R allows values to be converted from one type to another.
+
+## Convert to numeric
+
+```{r}
+x <- "100"
+
+as.numeric(x)
+```
+
+Check:
+
+```{r}
+typeof(as.numeric(x))
+```
+
+## Convert to character
+
+```{r}
+x <- 100
+
+as.character(x)
+```
+
+## Convert to integer
+
+```{r}
+x <- 10.5
+
+as.integer(x)
+```
+
+Note that conversion to integer removes the decimal part rather than
+rounding the value.
+
+```{r}
+as.integer(10.9)
+as.integer(10.1)
+```
+
+## Convert to logical
+
+```{r}
+as.logical(1)
+as.logical(0)
+```
+
+# Type Coercion
+
+R automatically converts values when different types are combined.
+
+Consider:
+
+```{r}
+x <- c(1, 2, 3)
+
+typeof(x)
+```
+
+The vector is numeric.
+
+Now combine a number with a character:
+
+```{r}
+x <- c(1, 2, "3")
+
+x
+typeof(x)
+```
+
+R converts the numbers to character values.
+
+This is called **type coercion**.
+
+A simplified coercion hierarchy is:
+
+```text
+logical → numeric → character
+```
+
+For example:
+
+```{r}
+x <- c(TRUE, 10)
+
+x
+typeof(x)
+```
+
+The logical value is converted to numeric.
+
+# Special Values
+
+R has several special values that are important when working with data.
+
+## `NA`
+
+`NA` represents a missing value.
+
+```{r}
+x <- c(10, 20, NA, 40)
+
+x
+```
+
+Check for missing values:
+
+```{r}
+is.na(x)
+```
+
+This returns:
+
+```text
+FALSE FALSE TRUE FALSE
+```
+
+## `NULL`
+
+`NULL` represents the absence of a value.
+
+```{r}
+x <- NULL
+
+x
+```
+
+Check:
+
+```{r}
+is.null(x)
+```
+
+`NULL` is different from `NA`.
+
+- `NA` means a value is missing.
+- `NULL` means there is no value.
+
+## `NaN`
+
+`NaN` means **Not a Number**.
+
+It can occur when an undefined numerical operation is performed.
+
+```{r}
+0 / 0
+```
+
+Check:
+
+```{r}
+is.nan(0 / 0)
+```
+
+## `Inf`
+
+`Inf` represents positive infinity.
+
+```{r}
+1 / 0
+```
+
+Negative infinity:
+
+```{r}
+-1 / 0
+```
+
+Check:
+
+```{r}
+is.infinite(1 / 0)
+```
+
+# Comparing Special Values
+
+A common mistake is trying to compare `NA` using `==`.
+
+For example:
+
+```{r}
+x <- NA
+
+x == NA
+```
+
+The result is:
+
+```text
+NA
+```
+
+Instead, use:
+
+```{r}
+is.na(x)
+```
+
+Similarly:
+
+```{r}
+is.nan(NaN)
+is.infinite(Inf)
+is.null(NULL)
+```
+
+# Summary of Basic Data Types
+
+| Type | Example | `typeof()` |
+|---|---|---|
+| Numeric | `10.5` | `double` |
+| Integer | `10L` | `integer` |
+| Character | `"Hello"` | `character` |
+| Logical | `TRUE` | `logical` |
+| Complex | `2 + 3i` | `complex` |
+
+# Important Special Values
+
+| Value | Meaning |
+|---|---|
+| `NA` | Missing value |
+| `NULL` | No value |
+| `NaN` | Not a Number |
+| `Inf` | Positive infinity |
+| `-Inf` | Negative infinity |
+
+# Useful Commands
+
+| Command | Purpose |
+|---|---|
+| `typeof()` | Get underlying data type |
+| `class()` | Get object's class |
+| `is.numeric()` | Check if numeric |
+| `is.character()` | Check if character |
+| `is.logical()` | Check if logical |
+| `is.integer()` | Check if integer |
+| `is.double()` | Check if double |
+| `is.complex()` | Check if complex |
+| `is.na()` | Check for missing values |
+| `is.null()` | Check for `NULL` |
+| `is.nan()` | Check for `NaN` |
+| `is.infinite()` | Check for infinity |
+| `as.numeric()` | Convert to numeric |
+| `as.character()` | Convert to character |
+| `as.integer()` | Convert to integer |
+| `as.logical()` | Convert to logical |
+
+# Quick Practice
+
+Try to predict the result before running each command.
+
+## Exercise 1
+
+```{r}
+x <- 25
+typeof(x)
+```
+
+## Exercise 2
+
+```{r}
+x <- 25L
+typeof(x)
+```
+
+## Exercise 3
+
+```{r}
+x <- c(1, 2, "3")
+typeof(x)
+```
+
+## Exercise 4
+
+```{r}
+x <- c(TRUE, FALSE, TRUE)
+typeof(x)
+```
+
+## Exercise 5
+
+```{r}
+x <- c(10, NA, 30)
+
+is.na(x)
+```
+
+# Key Takeaways
+
+- R has several basic data types, including numeric, integer, character,
+  logical, and complex.
+- `typeof()` identifies the underlying storage type.
+- `class()` identifies an object's class.
+- `is.*()` functions are useful for checking types and special values.
+- `as.*()` functions are used for type conversion.
+- R automatically performs type coercion when combining different types.
+- `NA` represents missing data and should be checked using `is.na()`.
+- `NULL`, `NA`, `NaN`, and `Inf` have different meanings.

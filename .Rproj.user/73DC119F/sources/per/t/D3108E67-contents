@@ -1,0 +1,949 @@
+---
+title: "04-matrices"
+format: html
+---
+# Introduction
+
+A **matrix** is a two-dimensional data structure in R.
+
+A matrix consists of:
+
+- Rows
+- Columns
+- Elements
+
+Unlike a data frame, all elements in a matrix normally have the **same basic
+data type**.
+
+For example:
+
+```{r}
+matrix(
+  c(1, 2, 3, 4, 5, 6),
+  nrow = 2,
+  ncol = 3
+)
+```
+
+This creates:
+
+```text
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+```
+
+# Creating a Matrix
+
+The main function for creating matrices is `matrix()`.
+
+```{r}
+m <- matrix(
+  c(1, 2, 3, 4, 5, 6),
+  nrow = 2,
+  ncol = 3
+)
+
+m
+```
+
+The arguments mean:
+
+| Argument | Meaning |
+|---|---|
+| `data` | Values used to create the matrix |
+| `nrow` | Number of rows |
+| `ncol` | Number of columns |
+
+# Matrix Filling Order
+
+By default, R fills matrices **column by column**.
+
+```{r}
+matrix(
+  1:6,
+  nrow = 2,
+  ncol = 3
+)
+```
+
+Result:
+
+```text
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+```
+
+## Fill by Row
+
+Use `byrow = TRUE`.
+
+```{r}
+matrix(
+  1:6,
+  nrow = 2,
+  ncol = 3,
+  byrow = TRUE
+)
+```
+
+Result:
+
+```text
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+```
+
+> **Remember:** By default, R fills matrices by column.
+
+# Checking Matrix Dimensions
+
+Use `dim()`:
+
+```{r}
+m <- matrix(1:6, nrow = 2, ncol = 3)
+
+dim(m)
+```
+
+Result:
+
+```text
+2 3
+```
+
+This means:
+
+```text
+2 rows
+3 columns
+```
+
+## Number of Rows
+
+```{r}
+nrow(m)
+```
+
+## Number of Columns
+
+```{r}
+ncol(m)
+```
+
+## Number of Elements
+
+```{r}
+length(m)
+```
+
+# Checking Whether an Object Is a Matrix
+
+```{r}
+is.matrix(m)
+```
+
+Check the type:
+
+```{r}
+typeof(m)
+```
+
+Check the class:
+
+```{r}
+class(m)
+```
+
+# Matrix Indexing
+
+Matrices use two indices:
+
+```text
+matrix[row, column]
+```
+
+For example:
+
+```{r}
+m <- matrix(
+  1:9,
+  nrow = 3,
+  byrow = TRUE
+)
+
+m
+```
+
+The first element:
+
+```{r}
+m[1, 1]
+```
+
+The second row, third column:
+
+```{r}
+m[2, 3]
+```
+
+# Selecting a Row
+
+Use:
+
+```r
+matrix[row, ]
+```
+
+For example:
+
+```{r}
+m[1, ]
+```
+
+This selects the first row.
+
+Second row:
+
+```{r}
+m[2, ]
+```
+
+# Selecting a Column
+
+Use:
+
+```r
+matrix[, column]
+```
+
+For example:
+
+```{r}
+m[, 1]
+```
+
+This selects the first column.
+
+Third column:
+
+```{r}
+m[, 3]
+```
+
+# Selecting Multiple Rows or Columns
+
+Multiple rows:
+
+```{r}
+m[c(1, 3), ]
+```
+
+Multiple columns:
+
+```{r}
+m[, c(1, 3)]
+```
+
+Rows and columns:
+
+```{r}
+m[c(1, 3), c(2, 3)]
+```
+
+# Removing Rows or Columns
+
+Negative indexing can remove rows or columns.
+
+Remove the first row:
+
+```{r}
+m[-1, ]
+```
+
+Remove the first column:
+
+```{r}
+m[, -1]
+```
+
+Remove multiple columns:
+
+```{r}
+m[, -c(1, 3)]
+```
+
+# Modifying Matrix Elements
+
+You can modify individual elements.
+
+```{r}
+m <- matrix(
+  1:9,
+  nrow = 3,
+  byrow = TRUE
+)
+
+m[1, 1] <- 100
+
+m
+```
+
+Modify an entire row:
+
+```{r}
+m[2, ] <- c(20, 30, 40)
+
+m
+```
+
+Modify an entire column:
+
+```{r}
+m[, 3] <- c(300, 400, 500)
+
+m
+```
+
+# Creating Matrices from Vectors
+
+A matrix can be created from an existing vector.
+
+```{r}
+numbers <- 1:12
+
+m <- matrix(
+  numbers,
+  nrow = 3,
+  ncol = 4
+)
+
+m
+```
+
+# Row and Column Names
+
+Matrices can have row and column names.
+
+```{r}
+m <- matrix(
+  c(80, 90, 75, 85, 88, 92),
+  nrow = 2,
+  byrow = TRUE
+)
+
+rownames(m) <- c("Alice", "Bob")
+colnames(m) <- c("Math", "Science", "English")
+
+m
+```
+
+Now the matrix is easier to understand.
+
+Access the row names:
+
+```{r}
+rownames(m)
+```
+
+Access the column names:
+
+```{r}
+colnames(m)
+```
+
+# Creating a Matrix with Names
+
+You can also specify names when creating the matrix.
+
+```{r}
+m <- matrix(
+  c(80, 90, 75, 85, 88, 92),
+  nrow = 2,
+  byrow = TRUE,
+  dimnames = list(
+    c("Alice", "Bob"),
+    c("Math", "Science", "English")
+  )
+)
+
+m
+```
+
+# Matrix Arithmetic
+
+Matrices can be used in mathematical operations.
+
+```{r}
+A <- matrix(
+  1:4,
+  nrow = 2,
+  byrow = TRUE
+)
+
+B <- matrix(
+  5:8,
+  nrow = 2,
+  byrow = TRUE
+)
+
+A
+B
+```
+
+## Addition
+
+```{r}
+A + B
+```
+
+## Subtraction
+
+```{r}
+A - B
+```
+
+## Multiplication by a Scalar
+
+```{r}
+A * 2
+```
+
+Every element is multiplied by `2`.
+
+# Element-wise Multiplication
+
+The `*` operator performs **element-wise multiplication**.
+
+```{r}
+A * B
+```
+
+For example:
+
+```text
+A =  1 2
+     3 4
+
+B =  5 6
+     7 8
+```
+
+Then:
+
+```text
+A * B =  5 12
+        21 32
+```
+
+# Matrix Multiplication
+
+Matrix multiplication uses `%*%`.
+
+```{r}
+A %*% B
+```
+
+This is different from:
+
+```{r}
+A * B
+```
+
+Remember:
+
+| Operator | Operation |
+|---|---|
+| `*` | Element-wise multiplication |
+| `%*%` | Matrix multiplication |
+
+# Transpose
+
+The transpose of a matrix changes rows into columns.
+
+Use `t()`:
+
+```{r}
+m <- matrix(
+  1:6,
+  nrow = 2,
+  byrow = TRUE
+)
+
+m
+```
+
+Transpose:
+
+```{r}
+t(m)
+```
+
+# Diagonal
+
+Use `diag()` to work with diagonals.
+
+For example:
+
+```{r}
+m <- matrix(
+  1:9,
+  nrow = 3,
+  byrow = TRUE
+)
+
+diag(m)
+```
+
+This extracts the main diagonal.
+
+# Creating an Identity Matrix
+
+An identity matrix has `1`s on the main diagonal and `0`s elsewhere.
+
+```{r}
+diag(3)
+```
+
+Result:
+
+```text
+     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1
+```
+
+# Row and Column Operations
+
+R provides functions for calculating statistics across rows and columns.
+
+Consider:
+
+```{r}
+scores <- matrix(
+  c(
+    80, 90, 70,
+    85, 75, 95,
+    90, 88, 92
+  ),
+  nrow = 3,
+  byrow = TRUE
+)
+
+scores
+```
+
+## Row Sums
+
+```{r}
+rowSums(scores)
+```
+
+## Column Sums
+
+```{r}
+colSums(scores)
+```
+
+## Row Means
+
+```{r}
+rowMeans(scores)
+```
+
+## Column Means
+
+```{r}
+colMeans(scores)
+```
+
+# `apply()`
+
+`apply()` is a very useful function for working with matrices.
+
+The basic syntax is:
+
+```r
+apply(X, MARGIN, FUN)
+```
+
+where:
+
+- `X` = matrix or array
+- `MARGIN = 1` = rows
+- `MARGIN = 2` = columns
+- `FUN` = function to apply
+
+## Apply a Function to Rows
+
+```{r}
+apply(scores, 1, mean)
+```
+
+## Apply a Function to Columns
+
+```{r}
+apply(scores, 2, mean)
+```
+
+For example:
+
+```{r}
+apply(scores, 1, max)
+```
+
+finds the maximum value in each row.
+
+# Combining Matrices
+
+Matrices can be combined using `rbind()` and `cbind()`.
+
+## `rbind()`
+
+`rbind()` means **row bind**.
+
+```{r}
+A <- matrix(
+  1:4,
+  nrow = 2,
+  byrow = TRUE
+)
+
+B <- matrix(
+  5:8,
+  nrow = 2,
+  byrow = TRUE
+)
+
+rbind(A, B)
+```
+
+This adds rows.
+
+## `cbind()`
+
+`cbind()` means **column bind**.
+
+```{r}
+cbind(A, B)
+```
+
+This adds columns.
+
+# Converting a Matrix to a Vector
+
+Use `as.vector()`:
+
+```{r}
+m <- matrix(
+  1:6,
+  nrow = 2,
+  byrow = TRUE
+)
+
+as.vector(m)
+```
+
+> **Note:** R stores matrix data internally as a vector with dimension
+> attributes.
+
+# Matrix to Data Frame
+
+A matrix can be converted into a data frame.
+
+```{r}
+m <- matrix(
+  1:6,
+  nrow = 2,
+  byrow = TRUE
+)
+
+df <- as.data.frame(m)
+
+df
+```
+
+This is useful when moving from mathematical matrix operations to
+data-analysis workflows.
+
+# Data Frame to Matrix
+
+A data frame can also be converted to a matrix.
+
+```{r}
+df <- data.frame(
+  math = c(80, 90),
+  science = c(85, 95)
+)
+
+m <- as.matrix(df)
+
+m
+```
+
+> **Important:** If a data frame contains different data types, converting it
+> to a matrix can cause type coercion.
+
+# Matrix and Type Coercion
+
+A matrix normally contains values of one basic type.
+
+For example:
+
+```{r}
+m <- matrix(
+  c(1, 2, 3, 4),
+  nrow = 2
+)
+
+typeof(m)
+```
+
+Now add character data:
+
+```{r}
+m <- matrix(
+  c(1, 2, "3", 4),
+  nrow = 2
+)
+
+m
+```
+
+Check:
+
+```{r}
+typeof(m)
+```
+
+The entire matrix is converted to character.
+
+# Matrix Functions Reference
+
+| Function | Purpose |
+|---|---|
+| `matrix()` | Create a matrix |
+| `dim()` | Get dimensions |
+| `nrow()` | Number of rows |
+| `ncol()` | Number of columns |
+| `length()` | Number of elements |
+| `is.matrix()` | Check whether object is a matrix |
+| `rownames()` | Get/set row names |
+| `colnames()` | Get/set column names |
+| `t()` | Transpose matrix |
+| `diag()` | Get/set diagonal or create identity matrix |
+| `rowSums()` | Calculate row sums |
+| `colSums()` | Calculate column sums |
+| `rowMeans()` | Calculate row means |
+| `colMeans()` | Calculate column means |
+| `apply()` | Apply a function across rows/columns |
+| `rbind()` | Combine by rows |
+| `cbind()` | Combine by columns |
+| `as.vector()` | Convert to vector |
+| `as.matrix()` | Convert to matrix |
+| `as.data.frame()` | Convert to data frame |
+
+# Matrix Operators Reference
+
+| Operator | Purpose |
+|---|---|
+| `+` | Matrix addition |
+| `-` | Matrix subtraction |
+| `*` | Element-wise multiplication |
+| `/` | Element-wise division |
+| `^` | Element-wise power |
+| `%*%` | Matrix multiplication |
+| `t()` | Transpose |
+
+# Matrix Indexing Reference
+
+Given:
+
+```{r}
+m <- matrix(
+  1:9,
+  nrow = 3,
+  byrow = TRUE
+)
+```
+
+| Operation | Code |
+|---|---|
+| Element | `m[1, 2]` |
+| Row | `m[1, ]` |
+| Column | `m[, 2]` |
+| Multiple rows | `m[c(1, 3), ]` |
+| Multiple columns | `m[, c(1, 3)]` |
+| Remove row | `m[-1, ]` |
+| Remove column | `m[, -1]` |
+
+# Matrix vs Vector
+
+| Feature | Vector | Matrix |
+|---|---|---|
+| Dimensions | 1D | 2D |
+| Indexing | `x[1]` | `m[1, 1]` |
+| Rows | No | Yes |
+| Columns | No | Yes |
+| Same basic type | Yes | Yes |
+| Common use | Lists of values | Tabular/numerical calculations |
+
+# Matrix vs Data Frame
+
+Matrices and data frames may look similar, but they are different.
+
+| Feature | Matrix | Data Frame |
+|---|---|---|
+| Dimensions | 2D | 2D |
+| Data types | Usually one type | Columns can have different types |
+| Mathematical operations | Excellent | Less suitable |
+| Statistical/numerical calculations | Excellent | Excellent |
+| Typical use | Numerical data, linear algebra | Data analysis |
+| Column types | Same | Can differ |
+
+For example, a matrix might contain:
+
+```text
+80 90 75
+85 88 92
+```
+
+while a data frame can contain:
+
+```text
+Name      Age    Score
+Alice     23     80
+Bob       25     90
+```
+
+# Python Comparison
+
+If you come from Python, a matrix in R is conceptually similar to a
+two-dimensional NumPy array.
+
+| Operation | R | Python / NumPy |
+|---|---|---|
+| Create matrix | `matrix()` | `np.array()` |
+| Dimensions | `dim(x)` | `x.shape` |
+| Rows | `nrow(x)` | `x.shape[0]` |
+| Columns | `ncol(x)` | `x.shape[1]` |
+| Transpose | `t(x)` | `x.T` |
+| Matrix multiplication | `A %*% B` | `A @ B` |
+| Element-wise multiplication | `A * B` | `A * B` |
+| Row sum | `rowSums(x)` | `x.sum(axis=1)` |
+| Column sum | `colSums(x)` | `x.sum(axis=0)` |
+
+# Practice Exercises
+
+## Exercise 1 — Create a Matrix
+
+Create the following matrix:
+
+```text
+10 20 30
+40 50 60
+70 80 90
+```
+
+Then find:
+
+1. Number of rows
+2. Number of columns
+3. Number of elements
+4. The value in row 2, column 3
+
+## Exercise 2 — Indexing
+
+Using:
+
+```{r}
+m <- matrix(
+  1:16,
+  nrow = 4,
+  byrow = TRUE
+)
+```
+
+Find:
+
+1. The first row
+2. The last row
+3. The second column
+4. The last column
+5. Elements in rows 1 and 3
+6. Elements in columns 2 and 4
+
+## Exercise 3 — Statistics
+
+Using:
+
+```{r}
+scores <- matrix(
+  c(
+    80, 90, 70,
+    85, 75, 95,
+    90, 88, 92
+  ),
+  nrow = 3,
+  byrow = TRUE
+)
+```
+
+Calculate:
+
+1. Sum of each row
+2. Sum of each column
+3. Mean of each row
+4. Mean of each column
+5. Maximum value of each row
+
+## Exercise 4 — Matrix Multiplication
+
+Create:
+
+```{r}
+A <- matrix(
+  c(1, 2, 3, 4),
+  nrow = 2,
+  byrow = TRUE
+)
+
+B <- matrix(
+  c(5, 6, 7, 8),
+  nrow = 2,
+  byrow = TRUE
+)
+```
+
+Calculate:
+
+1. `A + B`
+2. `A * B`
+3. `A %*% B`
+4. `t(A)`
+
+Pay attention to the difference between `*` and `%*%`.
+
+# Key Takeaways
+
+- A matrix is a two-dimensional R data structure.
+- Matrices normally contain values of the same basic type.
+- `matrix()` creates matrices.
+- R fills matrices by column by default.
+- `byrow = TRUE` changes the filling order to rows.
+- Matrix elements are accessed using `[row, column]`.
+- `*` performs element-wise multiplication.
+- `%*%` performs matrix multiplication.
+- `t()` calculates the transpose.
+- `diag()` works with matrix diagonals.
+- `rowSums()` and `colSums()` calculate row and column sums.
+- `rowMeans()` and `colMeans()` calculate row and column means.
+- `apply()` applies functions across rows or columns.
+- `rbind()` combines rows.
+- `cbind()` combines columns.
+- Matrices are particularly useful for numerical computing and linear algebra.
+- Data frames are generally more appropriate for real-world tabular data
+  analysis.
